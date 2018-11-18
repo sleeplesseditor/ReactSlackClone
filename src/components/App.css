@@ -6,10 +6,13 @@ body,
     padding: 1em;
 } 
 
-/* SideBar */
-
+/* SidePanel */
 .channel_add:hover {
     color: #fff;
+}
+
+.menu {
+    padding-bottom: 2em;
 }
 
 /* Messages.js */
