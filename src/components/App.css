@@ -6,6 +6,12 @@ body,
     padding: 1em;
 } 
 
+/* SideBar */
+
+.channel_add:hover {
+    color: #fff;
+}
+
 /* Messages.js */
 .messages {
     height: 55vh;
