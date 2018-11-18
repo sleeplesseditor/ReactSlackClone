@@ -3,13 +3,14 @@ import firebase from '../../firebase';
 import uuidv4 from 'uuid/v4';
 import { Button, Input, Segment } from 'semantic-ui-react';
 import FileModal from './FileModal';
+import ProgressBar from './ProgressBar';
 
 class MessageForm extends Component {
     state = {
         storageRef: firebase.storage().ref(),
         uploadTask: null,
         uploadState: '',
-        percentUpload: 0,
+        percentUploaded: 0,
         message: '',
         channel: this.props.currentChannel,
         user: this.props.currentUser,
@@ -88,8 +89,9 @@ class MessageForm extends Component {
         },
             () => {
                 this.state.uploadTask.on('state_changed', snap => {
-                    const percentUpload = Math.round((snap.bytesTransferred / snap.totalBytes) * 100);
-                    this.setState({ percentUpload });
+                    const percentUploaded = Math.round((snap.bytesTransferred / snap.totalBytes) * 100);
+                    this.props.isProgressBarVisible(percentUploaded);
+                    this.setState({ percentUploaded });
                 }, 
                 err => {
                     console.error(err);
@@ -133,7 +135,7 @@ class MessageForm extends Component {
     }
 
     render(){
-        const { errors, message, loading, modal } = this.state;
+        const { errors, message, loading, modal, uploadState, percentUploaded } = this.state;
 
         return (
             <Segment className="message__form">
@@ -169,12 +171,16 @@ class MessageForm extends Component {
                         labelPosition="right"
                         icon="cloud upload"
                     />
-                    <FileModal 
-                        modal={modal}
-                        closeModal={this.closeModal}
-                        uploadFile={this.uploadFile}
-                    />
                 </Button.Group>
+                <FileModal 
+                    modal={modal}
+                    closeModal={this.closeModal}
+                    uploadFile={this.uploadFile}
+                />
+                <ProgressBar 
+                    uploadState={uploadState}
+                    percentUploaded={percentUploaded}
+                />
             </Segment>
         )
     }
