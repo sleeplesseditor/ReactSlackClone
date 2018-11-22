@@ -26,8 +26,8 @@ class Messages extends Component {
         searchLoading: false,
         searchResults: [],
         typingRef: firebase.database().ref('typing'),
-        typingUser: [],
-        connectedRef: firebase.database().ref('./info/connected')
+        typingUsers: [],
+        connectedRef: firebase.database().ref(".info/connected")
     }
 
     componentDidMount() {
@@ -68,7 +68,7 @@ class Messages extends Component {
             if(snap.val() === true) {
                 this.state.typingRef
                     .child(channelId)
-                    .child(this.setState.user.uid)
+                    .child(this.state.user.uid)
                     .onDisconnect()
                     .remove(err => {
                         if(err !== null){
@@ -214,7 +214,7 @@ class Messages extends Component {
         return channel ? `${this.state.privateChannel ? '@' : '#'}${channel.name}` : '';
     }
 
-    displayTypingUsers = users => (
+    displayTypingUsers = users => 
         users.length > 0 && users.map(user => (
             <div 
                 style={{ display: 'flex', alignItems: 'center', marginBottom: '0.2em' }} 
@@ -223,7 +223,6 @@ class Messages extends Component {
                 <span className="user__typing">{user.name} is typing</span><Typing />
             </div>
         ))
-    )
 
     render() {
         const { 
