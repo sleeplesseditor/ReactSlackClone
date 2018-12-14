@@ -1,6 +1,6 @@
 # ReactSlackClone
 
-A Slack clone built using React, Redux and Firebase from Reed Barger's [Udemy course](http://www.udemy.com/build-a-slack-chat-app-with-react-redux-and-firebase). Full chat functionality, with private direct messaging options, emoji picker, image upload, avatar change options and channel creation facility.
+A Slack clone built using React, Redux and Firebase from Reed Barger's [Udemy course](http://www.udemy.com/build-a-slack-chat-app-with-react-redux-and-firebase). Full chat functionality, with private direct messaging options, emoji picker, image upload, avatar change options, typing indicators, real-time availability lists and channel creation facility.
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
